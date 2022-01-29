@@ -42,6 +42,9 @@ const Auth = () => {
   const [input, setInput] = useState({
     email: '',
   });
+  const [authInfo, setAuthInfo] = useState({
+    email: '',
+  });
 
   const onChange = e => {
     const { name, value } = e.target;
@@ -49,9 +52,13 @@ const Auth = () => {
       ...input,
       [name]: value,
     });
+    console.log(value);
   };
   const handleAuthenticate = () => {
-    FtAuthService.createFtAuth(input.email);
+    setAuthInfo({
+      ...input,
+    });
+    FtAuthService.createFtAuth(authInfo.email);
     setIsSend(true);
     setIsBlock(true);
 
@@ -69,16 +76,15 @@ const Auth = () => {
 
   return (
     <Styled.AuthDiv>
-      <div>
+      <div className="input_div">
         <TextField
           name="email"
           value={input.email}
           onChange={onChange}
           id="standard-basic"
           label="인트라 아이디"
-          variant="standard"
         />
-        <span id="domain"></span>
+        <h1></h1>
       </div>
       <LoadingButton
         onClick={handleAuthenticate}
@@ -89,7 +95,7 @@ const Auth = () => {
       >
         인증
       </LoadingButton>
-      {isSend && authRequestInformation('echung')}
+      {isSend && authRequestInformation(authInfo.email)}
       {isSend && authRequestCheckStep(handleSendReset)}
     </Styled.AuthDiv>
   );
