@@ -16,7 +16,7 @@ const MenuModalDiv = styled.div`
 `;
 
 const MenuItem = styled(Link)`
-  &&{
+  && {
     display: flex;
     flex-direction: row;
     margin: 0.7rem 0;
@@ -40,12 +40,12 @@ const MenuItem = styled(Link)`
       if (props.icon)
         return `url(${props.icon}) no-repeat center center / contain`;
       return '#fff';
-    }}
+    }};
   }
 
   .menu_item_text {
     box-sizing: content-box;
-    margin-left: 0.3rem
+    margin-left: 0.3rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
